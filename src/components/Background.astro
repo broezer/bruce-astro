@@ -135,18 +135,36 @@
     }
     requestAnimationFrame(step);
 
+    let isMouseMoving = false;
+    let idleTimeout;
+
     document.addEventListener('mousemove', (e) => {
+        isMouseMoving = true;
+        clearTimeout(idleTimeout);
+
+        idleTimeout = setTimeout(() => {
+            isMouseMoving = false;
+        }, 2000); // Adjust idle time as needed
+
         mouse.x = e.clientX;
         mouse.y = e.clientY;
+
+
+
+
     });
 
     function randomMouseMovement() {
+
         for (let i = 0; i < 200; i++) {
             setTimeout(() => {
-                mouse.x = Math.random() * window.innerWidth;
-                mouse.y = Math.random() * window.innerHeight;
+                if (!isMouseMoving) {
+                    mouse.x = Math.random() * window.innerWidth;
+                    mouse.y = Math.random() * window.innerHeight;
+                }
             }, i * 8);
         }
+
     }
 
     // Repeat every 2 seconds
