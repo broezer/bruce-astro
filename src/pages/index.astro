@@ -1,12 +1,28 @@
 ---
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Background from '../components/Background.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<h1 class="hidden">Bruce Moerdjiman</h1>
-	<h2 class="text-normal">🏄🏻‍♂️ currently offline 🏄🏻‍♂️</h2>
+	<main class="w-3/4 md:w-1/2 flex flex-wrap relative justify-center mix-blend-exclusion
+">
+		<h1 class="uppercase font-sans text-[6vw] md:text-[4vw] font-bold text-black">Bruce Moerdjiman</h1>
+		<h2 class="text-normal text-center text-[2vw] md:text-[1.4vw] tracking-[0.3em] w-full bg-black text-white py-2">🏄🏻‍♂️ currently offline 🏄🏻‍♂️</h2>
+
+		<p class="text-center w-full text-normal text-monospace font-light text-[1.6vw] md:text-[1.2vw] tracking-[0.2em] pt-[2vw] text-black">
+			..::~ crafting digital stuff since 2000 ~::..
+		</p>
+	</main>
+
 </Layout>
+<Background/>
+<style>
+	h2{
+		font-family: 'Courier New', Courier, monospace;
+	}
+
+</style>

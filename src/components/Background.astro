@@ -1,0 +1,157 @@
+<canvas id="flowfield" class="absolute w-full h-full top-0 left-0 -z-1  saturate-120"></canvas>
+<script is:inline  src="https://codepen.io/DonKarlssonSan/pen/jBWaad.js"></script>
+<script is:inline src="https://codepen.io/Tibixx/pen/rRBKBm.js"></script>
+
+<script>
+    // Uses Vector helper class:
+    // Uses Simplex3 implementation: https://codepen.io/DonKarlssonSan/pen/jBWaad.js
+
+    // Uses Vector helper class: https://codepen.io/Tibixx/pen/rRBKBm.js
+    // Uses Simplex3 implementation: https://codepen.io/DonKarlssonSan/pen/jBWaad.js
+
+    // Uses Vector helper class: https://codepen.io/Tibixx/pen/rRBKBm.js
+    // Uses Simplex3 implementation: https://codepen.io/DonKarlssonSan/pen/jBWaad.js
+
+    // Uses Vector helper class: https://codepen.io/Tibixx/pen/rRBKBm.js
+    // Uses Simplex3 implementation: https://codepen.io/DonKarlssonSan/pen/jBWaad.js
+
+    class FlowField {
+        settings = {
+            frequency: 0.9,
+        };
+
+        constructor(w, h, settings = {}) {
+            this.settings = { ...this.settings, ...settings };
+            this.w = w || 10;
+            this.h = h || 10;
+            this.time = 0;
+            this.PI2 = Math.PI * 2;
+            this.build();
+        }
+
+        build() {
+            this.cols = Math.ceil(this.w);
+            this.rows = Math.ceil(this.h);
+
+            this.field = Array.from({ length: this.cols }, () =>
+                Array.from({ length: this.rows }, () => new Vector(0, 0))
+            );
+        }
+
+        update(delta) {
+            this.time += delta;
+            const updateTime = this.time * this.settings.frequency / 1000;
+
+            for (let x = 0; x < this.cols; x++) {
+                for (let y = 0; y < this.rows; y++) {
+                    const noiseValue = noise.simplex3(x / 20, y / 20, updateTime);
+                    const angle = noiseValue * this.PI2;
+                    const length = noise.simplex3(x / 10 + 40000, y / 10 + 40000, updateTime);
+
+                    this.field[x][y].setAngle(angle);
+                    this.field[x][y].setLength(length);
+
+                    this.manipulateVector?.(this.field[x][y], x, y);
+                    this.onDraw?.(this.field[x][y], x, y);
+                }
+            }
+        }
+    }
+
+    const settings = { frequency: 0.1 };
+    const tileSize = 30;
+    const tileRatio = 1.3;
+
+    const canvas = document.getElementById('flowfield');
+    const ctx = canvas.getContext('2d');
+    const container = canvas.parentElement;
+
+    let cols, rows, ctxScale, widthColorScaling, heightColorScaling, ff;
+
+    function createFlowField() {
+        cols = Math.ceil(window.innerWidth / tileSize);
+        rows = Math.ceil(window.innerHeight / (tileSize * tileRatio));
+
+        ctxScale = { x: canvas.width / cols, y: canvas.height / rows };
+        widthColorScaling = 255 / cols;
+        heightColorScaling = 255 / rows;
+
+        ff = new FlowField(cols, rows, settings);
+        ff.onDraw = drawVector;
+        ff.manipulateVector = manipulateVector;
+    }
+
+    // Resize canvas and regenerate FlowField
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        createFlowField();
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const mouse = new Vector(0, 0);
+
+    // Draw function
+    function drawVector(vector, x, y) {
+        if (x === 0 && y === 0) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        const xmove = vector.getLength() * Math.abs(vector.x);
+        const ymove = vector.getLength() * Math.abs(vector.y);
+
+        const red = Math.round((-20 * xmove) + (80 * ymove) + (50 - (0.6 * y * heightColorScaling)));
+        const green = Math.round((180 * xmove) + (20 * ymove) - 60 + (0.4 * y * heightColorScaling));
+        const blue = Math.round((50 * xmove) + (30 * ymove) + (40 - (0.5 * y * heightColorScaling)) + (0.5 * y * heightColorScaling));
+
+        ctx.fillStyle = `rgba(${red}, ${green}, ${blue}, 0.8)`;
+        ctx.fillRect(x * ctxScale.x, y * ctxScale.y, ctxScale.x, ctxScale.y);
+    }
+
+    // Vector Manipulation Function
+    function manipulateVector(vector, x, y) {
+        const pos = new Vector(
+            (x * ctxScale.x) + (0.5 * ctxScale.x),
+            (y * ctxScale.y) + (0.5 * ctxScale.y)
+        );
+
+        const mouseEffect = new Vector(
+            (mouse.x - pos.x) / canvas.width,
+            (mouse.y - pos.y) / canvas.height
+        );
+
+        vector.addTo(mouseEffect);
+        if (vector.getLength() > 1) vector.setLength(1);
+    }
+
+    // Animation loop
+    let lastStep = performance.now();
+    function step(time) {
+        const deltaTime = time - lastStep;
+        lastStep = time;
+        ff.update(deltaTime);
+        requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+
+    document.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
+
+    function randomMouseMovement() {
+        for (let i = 0; i < 200; i++) {
+            setTimeout(() => {
+                mouse.x = Math.random() * window.innerWidth;
+                mouse.y = Math.random() * window.innerHeight;
+            }, i * 8);
+        }
+    }
+
+    // Repeat every 2 seconds
+    setInterval(randomMouseMovement, 2000);
+
+
+
+</script>
