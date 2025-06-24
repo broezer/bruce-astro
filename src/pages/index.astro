@@ -1,28 +1,48 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-import Background from '../components/Background.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
 ---
-
 <Layout>
-	<main class="w-3/4 md:w-1/2 flex flex-wrap relative justify-center mix-blend-exclusion
-">
-		<h1 class="uppercase font-sans text-[6vw] md:text-[4vw] font-bold text-black">Bruce Moerdjiman</h1>
-		<h2 class="text-normal text-center text-[2vw] md:text-[1.4vw] tracking-[0.3em] w-full bg-black text-white py-2">🏄🏻‍♂️ currently offline 🏄🏻‍♂️</h2>
+    <main class="w-full min-h-screen text-[#FCFCD9] px-[2vw] flex flex-col justify-between align-middle ">
+            <header class="w-full">
+                <h3 class="font-ibm-mono  text-[6.1vw] mt-[1.2vw] leading-[1.4em]">
+                    <span class="font-thin">your</span> <span class="font-semibold">friendly</span> <span>neighborhood</span>
+                    <span class="font-semibold italic">digital</span> <span class="font-light underline ">artisan</span>
+                </h3>
+            </header>
 
-		<p class="text-center w-full text-normal text-monospace font-light text-[1.6vw] md:text-[1.2vw] tracking-[0.2em] pt-[2vw] text-black">
-			..::~ crafting digital stuff since 2000 ~::..
-		</p>
-	</main>
+            <section class="w-full  md:w-1/2 mt-20 text-lg md:text-xl font-ibm-sans flex flex-wrap gap-12 font-light">
+                <p>
+                    Hi! You’re on yet <span class="font-bold italic">another</span> digital portfolio with the same <span class="font-bold italic">basic</span>
+                    text you always read about us, <span class="font-bold italic">unique</span>, digital professionals. I promise you this website <span class="font-bold underline">won't</span> be any different.
+                </p>
+                <p>
+                    Find the usual contact options in the right corner below if you want to connect with me. Otherwise you’re more than welcome just to close this website and go on with your daily business.
+                </p>
 
+            </section>
+
+
+            <nav class="flex justify-end gap-3 pb-[2vw]">
+                <a href="http://github.com/broezer" title="Find me on Github!">
+                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.5 0C4.25442 0 0 4.25363 0 9.5C0 13.6974 2.72175 17.2583 6.49721 18.5147C6.97142 18.6026 7.125 18.3081 7.125 18.0579V16.2893C4.48242 16.8641 3.93221 15.1683 3.93221 15.1683C3.49996 14.0703 2.87692 13.7782 2.87692 13.7782C2.01479 13.1884 2.94263 13.201 2.94263 13.201C3.89658 13.2675 4.3985 14.1803 4.3985 14.1803C5.24558 15.6323 6.62071 15.2127 7.163 14.9696C7.24771 14.3561 7.49392 13.9365 7.76625 13.6998C5.65646 13.4583 3.43821 12.6437 3.43821 9.00442C3.43821 7.96654 3.8095 7.11946 4.41671 6.45446C4.31854 6.21458 3.99317 5.24796 4.50933 3.94013C4.50933 3.94013 5.30733 3.68521 7.12262 4.91388C7.88025 4.70329 8.6925 4.598 9.5 4.59404C10.3075 4.598 11.1205 4.70329 11.8798 4.91388C13.6935 3.68521 14.4899 3.94013 14.4899 3.94013C15.0068 5.24875 14.6815 6.21537 14.5833 6.45446C15.1929 7.11946 15.561 7.96733 15.561 9.00442C15.561 12.6532 13.3388 13.4568 11.2235 13.6919C11.5639 13.9864 11.875 14.5643 11.875 15.451V18.0579C11.875 18.3105 12.027 18.6073 12.5091 18.5139C16.2814 17.256 19 13.6958 19 9.5C19 4.25363 14.7464 0 9.5 0Z" fill="#FCFCD9"/>
+                    </svg>
+
+                </a>
+                <a href="http://github.com/broezer" title="Connect with me on LinkedIn!">
+                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_10_76)">
+                            <path d="M0 0V19H19V0H0ZM6.33333 15.0417H3.95833V6.33333H6.33333V15.0417ZM5.14583 5.3295C4.38108 5.3295 3.76042 4.70408 3.76042 3.933C3.76042 3.16192 4.38108 2.5365 5.14583 2.5365C5.91058 2.5365 6.53125 3.16192 6.53125 3.933C6.53125 4.70408 5.91138 5.3295 5.14583 5.3295ZM15.8333 15.0417H13.4583V10.6052C13.4583 7.93883 10.2917 8.14071 10.2917 10.6052V15.0417H7.91667V6.33333H10.2917V7.73063C11.3976 5.68338 15.8333 5.53217 15.8333 9.69079V15.0417Z" fill="#FCFCD9"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_10_76">
+                                <rect width="19" height="19" rx="4" fill="white"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </a>
+
+            </nav>
+
+    </main>
 </Layout>
-<Background/>
-<style>
-	h2{
-		font-family: 'Courier New', Courier, monospace;
-	}
-
-</style>
