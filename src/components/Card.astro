@@ -1,0 +1,123 @@
+<section class=" sm:min-h-screen min-w-screen sm:fixed right-0 top-0 flex justify-center sm:justify-end items-end sm:pr-20 sm:pb-20 pointer-events-none">
+
+    <div class="perspective-1000 flex justify-center" id="photoContainer">
+        <div class="w-1/2 h-auto sm:w-96 sm:h-[500px] md:w-80 md:h-96 relative preserve-3d transition-transform duration-100 ease-out  overflow-hidden shadow-2xl shine-overlay"
+             id="photoCard"
+             style="box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1);">
+
+            <img src=""
+                 alt="Interactive Photo"
+                 class="w-full h-full object-cover  relative z-10"
+                 id="photoImage">
+
+            <div class="absolute inset-0 glare-gradient opacity-0 hover:opacity-100 transition-opacity duration-200 z-20 pointer-events-none "
+                 id="glare"></div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="hidden fixed w-5 h-5 bg-white bg-opacity-80 rounded-full pointer-events-none z-50 transition-transform duration-100 ease-out backdrop-blur-sm border-2 border-white border-opacity-30"
+         id="cursor"></div>
+
+
+</section>
+<style>
+    .perspective-1000 {
+        perspective: 1000px;
+    }
+
+    .preserve-3d {
+        transform-style: preserve-3d;
+    }
+</style>
+<script is:inline>
+    const photoCard = document.getElementById('photoCard');
+    const photoContainer = document.getElementById('photoContainer');
+
+
+    const glare = document.getElementById('glare');
+    const cursor = document.getElementById('cursor');
+    const photoImage = document.getElementById('photoImage');
+
+    // Replace this with your actual image URL
+    //const imageUrl = 'https://avatars.githubusercontent.com/u/2492725?v=4';
+
+    const imageUrl = 'https://brucemoerdjiman.com/bruce.jpg'
+
+    photoImage.src = imageUrl;
+
+    let isHovering = true;
+
+    photoContainer.addEventListener('mouseenter', () => {
+        //isHovering = true;
+    });
+
+    photoContainer.addEventListener('mouseleave', () => {
+        //isHovering = false;
+        photoCard.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0px)';
+        glare.style.opacity = '0';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        // Update custom cursor position
+        cursor.style.left = e.clientX - 10 + 'px';
+        cursor.style.top = e.clientY - 10 + 'px';
+
+        if (!isHovering) return;
+
+        const rect = photoContainer.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        const mouseX = e.clientX - centerX;
+        const mouseY = e.clientY - centerY;
+
+        // Calculate subtle 3D rotation
+        const rotateX = (mouseY / (rect.height / 2)) * -10;
+        const rotateY = (mouseX / (rect.width / 2)) * 10;
+
+        // Calculate translation for depth
+        const translateX = mouseX * 0.05;
+        const translateY = mouseY * 0.05;
+        const translateZ = Math.abs(mouseX + mouseY) * 0.1;
+
+        // Apply 3D transform
+        photoCard.style.transform = `
+                rotateX(${rotateX}deg) 
+                rotateY(${rotateY}deg) 
+                translateX(${translateX}px)
+                translateY(${translateY}px)
+                translateZ(${translateZ}px)
+            `;
+
+        // Update glare position
+        const glareX = ((e.clientX - rect.left) / rect.width) * 100;
+        const glareY = ((e.clientY - rect.top) / rect.height) * 100;
+
+        glare.style.setProperty('--x', glareX + '%');
+        glare.style.setProperty('--y', glareY + '%');
+    });
+
+    // Click effect
+    photoCard.addEventListener('click', () => {
+        photoCard.style.transform += ' scale(0.95)';
+        setTimeout(() => {
+            if (isHovering) {
+                photoCard.style.transform = photoCard.style.transform.replace(' scale(0.95)', '');
+            }
+        }, 150);
+    });
+
+    // Touch support for mobile
+    if ('ontouchstart' in window) {
+        photoContainer.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousemove', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            document.dispatchEvent(mouseEvent);
+        });
+    }
+</script>

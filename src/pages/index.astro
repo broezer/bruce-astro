@@ -1,16 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
 ---
 <Layout>
-    <main class="w-full min-h-screen text-[#FCFCD9] px-[2vw] flex flex-col justify-between align-middle ">
+    <main class="w-full min-h-screen overflow-hidden text-[#FCFCD9] px-[2vw] flex flex-col justify-between align-middle ">
             <header class="w-full">
                 <h3 class="font-ibm-mono  text-[6.1vw] mt-[1.2vw] leading-[1.4em]">
                     <span class="font-thin">your</span> <span class="font-semibold">friendly</span> <span>neighborhood</span>
                     <span class="font-semibold italic">digital</span> <span class="font-light underline ">artisan</span>
                 </h3>
             </header>
-
-            <section class="w-full  md:w-1/2 mt-20 text-lg md:text-xl font-ibm-sans flex flex-wrap gap-12 font-light">
+            <Card/>
+            <section class="w-full  md:w-1/2 mt-12 text-lg md:text-xl font-ibm-sans flex flex-wrap gap-12 font-light">
                 <p>
                     Hi! You’re on yet <span class="font-bold italic">another</span> digital portfolio with the same <span class="font-bold italic">basic</span>
                     text you always read about us, <span class="font-bold italic">unique</span>, digital professionals. I promise you this website <span class="font-bold underline">won't</span> be any different.
