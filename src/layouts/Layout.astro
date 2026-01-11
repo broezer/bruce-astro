@@ -13,9 +13,94 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
 		<title>bruce moerdjiman</title>
 
 		<link rel="preconnect" href="https://fonts.bunny.net">
+		<style>
+			/* Base state: hide the content before JS kicks in */
+			.transition-fade {
+				opacity: 0;
+				transform: translateY(10px);
+			}
+
+			/* First-load 'in' animation */
+			.transition-fade.is-entering {
+				animation: fade-in 0.4s ease-out forwards 0.4s;
+			}
+
+			/* Swup-driven transitions between pages */
+			html.is-changing .transition-fade {
+				transition: opacity 0.25s ease, transform 0.25s ease;
+				opacity: 1;
+				transform: translateY(0);
+			}
+
+			html.is-animating .transition-fade {
+				opacity: 0;
+				transform: translateY(10px);
+			}
+
+			@keyframes fade-in {
+				from {
+					opacity: 0;
+					transform: translateY(10px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+		</style>
 	</head>
-	<body class="bg-[#283136]">
-		<slot />
+
+	<body class=" bg-[#010101]">
+		<main id="swup" class=" transition-fade font-ibm-sans">
+			<slot />"
+		</main>
+
+		<section class="fixed inset-0 w-screen h-screen py-4 pointer-events-none gap-4 grid grid-cols-12 -z-1 px-4
+			 [&>*]:h-full	[&>*]:border-x [&>*]:border-white/20 ">
+			<div class=""></div>
+			<div class=""></div>
+			<div class=""></div>
+			<div class=""></div>
+			<div class=""></div>
+			<div class=""></div>
+			<div class=""></div>
+			<div class=""></div>
+			<div class=""></div>
+			<div class=""></div>
+
+		</section>
+
+		<script type="module">
+			import Swup from 'https://unpkg.com/swup@4?module';
+
+			const swup = new Swup(); // basic init [web:15]
+
+			function runEnterAnimation() {
+				const container = document.querySelector('#swup.transition-fade');
+				if (!container) return;
+
+				// Remove first to allow re-trigger
+				container.classList.remove('is-entering');
+
+				// Force reflow so the class change retriggers the animation
+				// eslint-disable-next-line no-unused-expressions
+				container.offsetHeight;
+
+				container.classList.add('is-entering');
+			}
+
+			// First page load
+			if (document.readyState === 'complete' || document.readyState === 'interactive') {
+				runEnterAnimation();
+			} else {
+				document.addEventListener('DOMContentLoaded', () => runEnterAnimation());
+			}
+
+			// After every Swup navigation
+			swup.hooks.on('page:view', () => {
+				runEnterAnimation();
+			}); // pattern from reloading JS docs [web:20]
+		</script>
 	</body>
 	<SpeedInsights/>
 </html>
