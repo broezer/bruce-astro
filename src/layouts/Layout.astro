@@ -25,11 +25,26 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
 				animation: fade-in 0.4s ease-out forwards 0.4s;
 			}
 
+			.transition-expand{
+				opacity: 0;
+				transform: scaleX(0);
+			}
+
+			.transition-expand.is-entering{
+				animation: expand-in 0.8s ease-out forwards;
+			}
+
 			/* Swup-driven transitions between pages */
 			html.is-changing .transition-fade {
 				transition: opacity 0.25s ease, transform 0.25s ease;
 				opacity: 1;
 				transform: translateY(0);
+			}
+
+			html.is-changing .transition-expand {
+				transition: opacity 0.5s ease, transform 0.5s ease;
+				opacity: 1;
+				transform: scaleX(1);
 			}
 
 			html.is-animating .transition-fade {
@@ -47,6 +62,17 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
 					transform: translateY(0);
 				}
 			}
+
+			@keyframes expand-in {
+				from {
+					opacity: 0;
+					transform: scaleY(0);
+				}
+				to {
+					opacity: 1;
+					transform: scaleY(1);
+				}
+			}
 		</style>
 	</head>
 
@@ -55,8 +81,10 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
 			<slot />"
 		</main>
 
-		<section class="fixed inset-0 w-screen h-screen py-4 pointer-events-none gap-4 grid grid-cols-12 -z-1 px-4
-			 [&>*]:h-full	[&>*]:border-x [&>*]:border-white/20 ">
+		<section id="swup2" class="transition-expand
+				fixed inset-0 w-screen h-screen py-4 pointer-events-none gap-4 grid grid-cols-12 -z-1 px-4
+			 	[&>*]:h-full [&>*]:border-x [&>*]:border-white/20
+			 	">
 			<div class=""></div>
 			<div class=""></div>
 			<div class=""></div>
@@ -67,7 +95,8 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
 			<div class=""></div>
 			<div class=""></div>
 			<div class=""></div>
-
+			<div class=""></div>
+			<div class=""></div>
 		</section>
 
 		<script type="module">
@@ -77,16 +106,20 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
 
 			function runEnterAnimation() {
 				const container = document.querySelector('#swup.transition-fade');
+				const container2 = document.querySelector('#swup2.transition-expand');
 				if (!container) return;
 
 				// Remove first to allow re-trigger
 				container.classList.remove('is-entering');
+				container2.classList.remove('is-entering');
 
 				// Force reflow so the class change retriggers the animation
 				// eslint-disable-next-line no-unused-expressions
 				container.offsetHeight;
+				container2.offsetHeight;
 
 				container.classList.add('is-entering');
+				container2.classList.add('is-entering');
 			}
 
 			// First page load
