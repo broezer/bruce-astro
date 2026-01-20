@@ -1,0 +1,154 @@
+<section id="crafting" class="sticky flex flex-col justify-center text-center items-center scale-90 min-h-[90vh]  bg-black rounded-4xl z-100 mx-auto">
+    <h2 class="content-title text-white  text-6xl  w-full px-6 scale-80">
+        Crafting digital interactive experiences since <span class="text-purple-600 font-bold">'</span>99.
+    </h2>
+    <img src="/favicon.svg" class="w-1/6 h-auto mt-4 scale-200 drop-shadow-lg -translate-y-32" alt="Memoji Bruce"/>
+    <ul class="flex gap-4 text-4xl pt-12
+            [&>*]:w-auto [&>*]:bg-white [&>*]:rounded-xl [&>*]:text-black [&>*]:p-4 ">
+        <li>User Experience</li>
+        <li>Interface Design</li>
+        <li>Fullstack Development</li>
+        <li>Motion Design</li>
+    </ul>
+
+</section>
+<script>
+    import gsap from "gsap";
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    gsap.registerPlugin(ScrollTrigger);
+    console.log(gsap.version);
+
+    gsap.to("#crafting", {
+        scale: 1,
+        duration: 1,
+        y: -window.innerHeight/8,
+        scrollTrigger: {
+            trigger: "#crafting",
+            start: "top 80%",
+            end: "top 40%",
+            scrub: true,  // Links animation progress to scroll
+            //markers: true  // Uncomment for debugging
+        }
+    });
+
+    gsap.to("#crafting .content-title", {
+        scale: 1,
+        duration: 1,
+        scrollTrigger: {
+            trigger: ".content-title",
+            start: "top 80%",
+            end: "top 40%",
+            scrub: true,  // Links animation progress to scroll
+            //markers: true  // Uncomment for debugging
+        }
+    });
+
+    gsap.to("#crafting img", {
+        scale: 1,
+        y:0,
+        duration: 1,
+        scrollTrigger: {
+            trigger: ".content-title",
+            start: "top 80%",
+            end: "top 40%",
+            scrub: true,  // Links animation progress to scroll
+            //markers: true  // Uncomment for debugging
+        }
+    });
+
+</script>
+
+<section class="h-[80vh] w-full grid grid-cols-2 gap-4 px-4 ">
+<div class="h-full flex flex-col justify-end items-end pr-28 pb-32">
+<p class="text-4xl text-white">
+Currently working as a creative full-stack
+developer/designer at TwoPine, a small
+boutique agency specializing in custom
+web applications
+</p>
+</div>
+<div class="bg-white h-full flex justify-center items-center">
+<svg class="w-4/5 h-auto" width="515" height="113" viewBox="0 0 515 113" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_5_236)">
+<path d="M0 2.12317H71.6388V27.7085H50.9935V110.855H20.6453V27.7085H0V2.12317Z" fill="black"/>
+<path d="M156.015 2.12317L149.475 68.4777H149.176L138.405 2.12317H111.69L102.137 68.4777H101.837L94.6991 2.12317H65.2485L83.0086 110.877H116.092L124.748 37.7667H125.047L134.152 110.877H166.637L184.547 2.12317H156.015Z" fill="black"/>
+<path d="M220.281 0C181.277 0 181.277 22.8402 181.277 56.5107C181.277 90.1813 181.277 113.021 220.281 113.021C259.284 113.021 259.284 91.2321 259.284 56.5107C259.284 21.7893 259.284 0 220.281 0ZM220.281 90.7603C213.762 90.7603 212.544 88.3369 212.544 56.5107C212.544 24.6846 213.762 22.2612 220.281 22.2612C226.799 22.2612 228.017 24.6846 228.017 56.5107C228.017 88.3369 226.799 90.7603 220.281 90.7603Z" fill="black"/>
+<path d="M264.713 2.12317H304.935C328.166 2.12317 337.848 12.0957 337.848 36.0082C337.848 59.9207 324.811 69.8931 304.315 69.8931H295.061V110.855H264.713V2.12317ZM295.061 47.9751H298.395C304.016 47.9751 308.718 46.9028 308.718 35.9438C308.718 28.4805 306.132 24.0626 298.395 24.0626H295.061V47.9751Z" fill="#00CC33"/>
+<path d="M370.526 2.12317H340.177V110.855H370.526V2.12317Z" fill="#00CC33"/>
+<path d="M478.732 86.1922V67.3196H507.071V43.5572H478.732V26.8077H513.632V2.12317H450.35H448.362H421.818V42.8066H421.519L406.046 2.12317H373.112V110.877H400.724V67.4483H401.023L417.886 110.877H448.362H450.35H515V86.1922H478.732Z" fill="#00CC33"/>
+</g>
+<defs>
+<clipPath id="clip0_5_236">
+<rect width="515" height="113" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+
+</div>
+</section>
+
+
+<section class="stack-container bg-black h-[150vh]">
+<div class="panel">
+
+<h2 class="-translate-y-24">Boxing</h2>
+
+</div>
+<div class="panel">
+
+<h2 class="">Karate</h2>
+</div>
+<div class="panel ">
+
+<h2 class="translate-y-24">Surfing</h2>
+</div>
+</section>
+
+<script>
+import gsap from "gsap";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+console.log(gsap.version);
+
+// gsap.utils.toArray(".panel").forEach((panel:any, i) => {
+    //     ScrollTrigger.create({
+        //         trigger: panel,
+        //         start: "top top",
+        //         pin: true,
+        //         pinSpacing: false,
+        //         snap: 1 / (gsap.utils.toArray(".panel").length - 1),  // Full-sequence snap
+        //         //anticipatePin: 1,  // Preps for smooth entry
+        //         onEnter: () => gsap.set(panel, { position: "fixed", top: 0, left: 0, width: "100%" }),  // Force stack position
+        //         onLeave: () => gsap.set(panel, { clearProps: "all" }),
+        //         markers: true  // Debug: remove later
+        //     });
+        // });
+
+    const section = document.querySelector(".stack-container");
+    const panels = gsap.utils.toArray(".stack-container .panel");
+
+    const tl = gsap.timeline({
+    scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: "bottom top",  // Full 400vh scroll distance
+                pin: section,  // Pins entire section
+                pinSpacing: true,
+        scrub: 1,  // Precise scrub, snaps with your orig intent
+                //anticipatePin: 1,
+                markers: true  // Remove prod
+            }
+    });
+
+    // Position each at viewport top (yPercent -100 * index) at exact progress
+        tl.to(panels[0], { yPercent: -100 * 0, ease: "none" }, 0.0)  // Pin1 immediate (0vh)
+            .to(panels[1], { yPercent: -100 * 1, ease: "none" }, 0.33)  // Pin2 at 200vh (200/400=0.5)
+            .to(panels[2], { yPercent: -100 * 2, ease: "none" }, 0.66); // Pin3 at 300vh (300/400=0.75)
+
+    ScrollTrigger.refresh();
+
+    </script>
+
+<section class="h-screen w-[96vw] bg-white rounded-4xl mx-auto ">
+
+    </section>

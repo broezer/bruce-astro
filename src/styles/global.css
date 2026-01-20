@@ -8,3 +8,18 @@
     --font-ibm-sans: 'IBM Plex Sans', sans-serif;
 }
 
+@media (width >= 48rem) {
+    html {
+        /*font-size: clamp(0.4375rem, 0.0625rem + 0.7813vw, 1rem);*/
+        font-size:1vw;
+        /*font-size:1rem;*/
+    }
+}
+
+.panel {
+    @apply h-[100vh] w-full flex justify-center items-center;
+}
+
+.panel h2{
+    @apply bg-black text-white text-[18rem] font-bold leading-none uppercase;
+}

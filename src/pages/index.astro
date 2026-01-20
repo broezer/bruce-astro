@@ -1,28 +1,30 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "../layouts/Clean.astro";
 import Card from "../components/Card.astro";
 ---
 <Layout>
-    <section class="sticky top-0 left-0 flex flex-col justify-between w-full min-h-[95vh]">
-        <h1 class="text-white uppercase text-8xl font-bold w-full pl-3.5 pt-4">
-            Bruce<span class="text-purple-600">*</span>
+    <section  class="top-0 left-0 flex flex-col justify-between w-full min-h-[95vh] -z-1 overflow-hidden">
+        <h1 class="fade-in text-white uppercase text-3xl md:text-8xl font-bold w-full pl-3.5 pt-4">
+            Bruce Moerdjiman<span class="text-purple-600">*</span>
         </h1>
+
+        <div data-us-project="aTtJjx8sC92MCVrHmCtr" style=" z-index:0 ; width:100vw; height: 100vh; position: absolute; top: 1vh; left: 0"></div>
+
+        <script type="text/javascript">!function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.2/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();</script>
+
+
+
         <style>
+
+
             .marquee-text {
                 overflow: clip;
             }
 
             .marquee-text-track {
-                display: flex;
-                padding-left: 1rem;
-                padding-bottom: 1rem;
-                gap: 1rem;
                 width: max-content;
-                animation: marquee-move-text  8s linear infinite forwards;
+                animation: marquee-move-text 9s linear infinite forwards;
             }
-
-
-
 
             @keyframes marquee-move-text {
                 to {
@@ -32,9 +34,9 @@ import Card from "../components/Card.astro";
 
 
         </style>
-        <footer class="w-full">
+        <footer class="w-full fade-in">
             <div class="marquee-text">
-                <div class="marquee-text-track text-white text-7xl">
+                <div class="marquee-text-track flex px-2 pb-4 gap-4 text-white text-[5.5rem]">
                     <p class=""><span class="text-purple-600">*</span>your friendly neighborhood digital <span class="underline decoration-purple-600">artisan</span></p>
                     <p class="" aria-hidden="true"><span class="text-purple-600">*</span>your friendly neighborhood digital <span class="underline decoration-purple-600">artisan</span></p>
                 </div>
@@ -42,11 +44,25 @@ import Card from "../components/Card.astro";
 
         </footer>
     </section>
+    <span class="w-full h-18 bottom-0 lef-0 fixed bg-[#010101] z-9999999"></span>
+    <script>
+        import { gsap } from 'gsap';
 
-    <section class="sticky flex justify-center items-center w-full min-h-screen relative bg-black z-100">
-        <h2 class="text-white  text-6xl  w-full px-6">
-            Crafting digital interactive experiences since '99.
-        </h2>
-    </section>
+        function pageLoadAnim() {
+            gsap.from('.fade-in', {
+                opacity: 0,
+                y: 50,
+                duration: 2,
+                delay:0.75,
+                stagger: 0.1,  // Cascade effect
+                ease: 'back.out(1.7)'
+            });
+        }
+
+        document.addEventListener('astro:page-load', pageLoadAnim);
+    </script>
+
+
+
 
 </Layout>

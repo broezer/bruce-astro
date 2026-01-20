@@ -1,0 +1,65 @@
+---
+import '../styles/global.css'
+import  SpeedInsights  from "@vercel/speed-insights/astro"
+import { ClientRouter } from "astro:transitions";
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>bruce moerdjiman</title>
+
+		<link rel="preconnect" href="https://fonts.bunny.net">
+		<ClientRouter />
+	</head>
+
+	<body class=" bg-[#010101] overflow-hidden ">
+		<main class=" font-ibm-sans">
+			<slot />"
+		</main>
+
+		<section  class="expand
+				fixed inset-0 w-screen h-screen py-4 pointer-events-none gap-4 grid
+				grid-cols-3
+				md:grid-cols-12
+				-z-1 px-4
+			 	[&>*]:h-full [&>*]:border-x [&>*]:border-white/20
+			 	">
+			<div class=""></div>
+			<div class=""></div>
+			<div class=""></div>
+			<div class="max-md:hidden"></div>
+			<div class="max-md:hidden"></div>
+			<div class="max-md:hidden"></div>
+			<div class="max-md:hidden"></div>
+			<div class="max-md:hidden"></div>
+			<div class="max-md:hidden"></div>
+			<div class="max-md:hidden"></div>
+			<div class="max-md:hidden"></div>
+			<div class="max-md:hidden"></div>
+		</section>
+
+		<script>
+			import { gsap } from 'gsap';
+
+			function pageLoadAnimBg() {
+				gsap.from('.expand', {
+					scaleY: 0,
+					y: 50,
+					duration: 2,
+					delay:0.5,
+					stagger: 0.1,  // Cascade effect
+					ease: 'back.out(1.7)'
+				});
+			}
+
+			document.addEventListener('astro:page-load', pageLoadAnimBg);
+		</script>
+
+
+	</body>
+</html>
+
