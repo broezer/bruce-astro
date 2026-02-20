@@ -4,7 +4,7 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
 
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" class="p-0 m-0">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -13,91 +13,15 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
 		<title>bruce moerdjiman</title>
 
 		<link rel="preconnect" href="https://fonts.bunny.net">
-		<style>
-			/* Base state: hide the content before JS kicks in */
-			.transition-fade {
-				opacity: 0;
-				transform: translateY(10px);
-			}
 
-			/* First-load 'in' animation */
-			.transition-fade.is-entering {
-				animation: fade-in 0.4s ease-out forwards 0.4s;
-			}
-
-			.transition-expand{
-				opacity: 0;
-				transform: scaleX(0);
-			}
-
-			.transition-expand.is-entering{
-				animation: expand-in 0.8s ease-out forwards;
-			}
-
-			/* Swup-driven transitions between pages */
-			html.is-changing .transition-fade {
-				transition: opacity 0.25s ease, transform 0.25s ease;
-				opacity: 1;
-				transform: translateY(0);
-			}
-
-			html.is-changing .transition-expand {
-				transition: opacity 0.5s ease, transform 0.5s ease;
-				opacity: 1;
-				transform: scaleX(1);
-			}
-
-			html.is-animating .transition-fade {
-				opacity: 0;
-				transform: translateY(10px);
-			}
-
-			@keyframes fade-in {
-				from {
-					opacity: 0;
-					transform: translateY(10px);
-				}
-				to {
-					opacity: 1;
-					transform: translateY(0);
-				}
-			}
-
-			@keyframes expand-in {
-				from {
-					opacity: 0;
-					transform: scaleY(0);
-				}
-				to {
-					opacity: 1;
-					transform: scaleY(1);
-				}
-			}
-		</style>
 	</head>
 
-	<body class=" bg-[#010101]">
+	<body class=" bg-[#010101] overflow-x-hidden p-0">
 		<main  id="swup" class="transition-fade font-ibm-sans">
-			<slot />"
+			<slot />
 		</main>
 
-		<section id="swup2" class="transition-expand
-				fixed inset-0 w-screen h-screen py-4 pointer-events-none gap-4 grid grid-cols-12 -z-1 px-4
-			 	[&>*]:h-full [&>*]:border-x [&>*]:border-white/20
-			 	">
-			<div class=""></div>
-			<div class=""></div>
-			<div class=""></div>
-			<div class=""></div>
-			<div class=""></div>
-			<div class=""></div>
-			<div class=""></div>
-			<div class=""></div>
-			<div class=""></div>
-			<div class=""></div>
-			<div class=""></div>
-			<div class=""></div>
-		</section>
+
 
 		<script>
 			import Swup from 'https://unpkg.com/swup@4?module';
