@@ -4,7 +4,7 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
 import { ClientRouter } from "astro:transitions";
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" class="cursor-none">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -13,15 +13,24 @@ import { ClientRouter } from "astro:transitions";
 		<title>bruce moerdjiman</title>
 
 		<link rel="preconnect" href="https://fonts.bunny.net">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.css">
 		<ClientRouter />
+
+		<!-- Hide animated elements from first paint — GSAP reveals them -->
+		<style>
+			.fade-in        { opacity: 0; }
+			.fade-in-simple { opacity: 0 !important; }
+			[data-split="heading"] { opacity: 0; }
+		</style>
 	</head>
 
 	<body class=" bg-[#010101]  ">
+		<div id="loader" style="position:fixed;inset:0;background:#000;z-index:9999;pointer-events:none;"></div>
 		<main class=" font-ibm-sans">
 			<slot />
 		</main>
 
-		<section  class="expand
+		<section class="expand
 				fixed inset-0 w-screen h-screen py-4 pointer-events-none gap-4 grid
 				grid-cols-3
 				md:grid-cols-12
@@ -44,20 +53,33 @@ import { ClientRouter } from "astro:transitions";
 
 		<script>
 			import { gsap } from 'gsap';
-			function pageLoadAnimBg() {
+
+			const LOADER_DURATION = 0.6;
+
+			window.addEventListener('load', () => {
+				gsap.to('#loader', {
+					opacity: 0,
+					duration: LOADER_DURATION,
+					ease: 'power2.inOut',
+					onComplete: () => {
+						const loader = document.getElementById('loader');
+						if (loader) loader.style.display = 'none';
+					}
+				});
+
 				gsap.from('.expand', {
 					scaleY: 0,
 					y: 50,
 					duration: 1.2,
-					delay:0.5,
-					ease: 'ease-in'
+					delay: LOADER_DURATION * 0.5,
+					ease: 'power2.out'
 				});
-			}
+			});
 
-			document.addEventListener('astro:page-load', pageLoadAnimBg);
+			// Lenis
+			const lenis = new Lenis({ autoRaf: true });
 		</script>
-
+		<script src="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.min.js"></script>
 
 	</body>
 </html>
-
