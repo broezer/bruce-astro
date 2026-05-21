@@ -2,6 +2,7 @@
 import '../styles/global.css'
 import  SpeedInsights  from "@vercel/speed-insights/astro"
 import { ClientRouter } from "astro:transitions";
+import Cursor from "../components/Cursor.astro";
 ---
 <!doctype html>
 <html lang="en" class="cursor-none">
@@ -50,7 +51,7 @@ import { ClientRouter } from "astro:transitions";
 			<div class="max-md:hidden"></div>
 			<div class="max-md:hidden"></div>
 		</section>
-
+		<Cursor />
 		<script>
 			import { gsap } from 'gsap';
 
@@ -77,9 +78,8 @@ import { ClientRouter } from "astro:transitions";
 			});
 
 			// Lenis
-			const lenis = new Lenis({ autoRaf: true });
+			//const lenis = new Lenis({ autoRaf: true });
 		</script>
-		<script src="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.min.js"></script>
 
 	</body>
 </html>
