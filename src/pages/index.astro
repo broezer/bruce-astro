@@ -3,6 +3,7 @@ import Layout from "../layouts/Clean.astro";
 import Sport from "../components/Bruce.astro";
 import Bruce from "../components/Bruce_02.astro";
 import Orbit from "../components/Orbit.astro";
+import Image from "astro/components/Image.astro";
 ---
 <Layout>
     <section  class="top-0 left-0 flex flex-col justify-between w-full min-h-screen -z-1 overflow-hidden">
@@ -15,6 +16,9 @@ import Orbit from "../components/Orbit.astro";
         <div data-us-project="DBZNZcT4rhhtNCjNOa0f" class="fade-in-simple opacity-70"  style=" z-index:-1 ; width:100vw; height: 100vh; position: fixed; top: 0; left: 0"></div>
         <script type="text/javascript">!function(){var u=window.UnicornStudio;if(u&&u.init){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){u.init()})}else{u.init()}}else{window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.5/dist/unicornStudio.umd.js",i.onload=function(){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){UnicornStudio.init()})}else{UnicornStudio.init()}},(document.head||document.body).appendChild(i)}}();</script>
 
+        <picture class="  fade-in w-1/3 mx-4 mt-8 md:w-1/5 h-auto rounded-b-sm  rounded-tr-sm md:rounded-b-4xl md:rounded-tr-4xl grayscale-75  mix-blend-lighten overflow-hidden md:absolute   md:top-1/4 md:right-1/6">
+            <img src="bruce.webp" alt="Bruce Moerdjiman in his natural work habit" />
+        </picture>
 
         <p data-split="heading" class=" font-ibm-mono leading-5 text-xs md:w-1/2 md:text-xl md:leading-8 tracking-wide text-white px-4 py-10 md:py-0">
             I’m a full‑stack developer and digital designer based in Rotterdam, blending creativity and technology for nearly two decades.
@@ -25,21 +29,7 @@ import Orbit from "../components/Orbit.astro";
             <br/><br/>
             I bring a multidisciplinary approach to creating digital products that are functional, refined, and crafted for a seamless user experience.
         </p>
-        <style>
-            .marquee-text {
-                overflow: clip;
-            }
 
-            .marquee-text-track {
-                width: max-content;
-                animation: marquee-move-text 9s linear infinite forwards;
-            }
-            @keyframes marquee-move-text {
-                to {
-                    transform: translateX(-50%);
-                }
-            }
-        </style>
 
         <nav class="fade-in  pl-4 md:absolute  md:top-8 md:right-8 flex md:justify-end gap-4 md:gap-6 pb-[2vw]">
             <a class="w-4 cursor-none md:w-8 aspect-square hover:opacity-60 transition-all" href="https://github.com/broezer" title="Find me on Github!">
@@ -63,6 +53,24 @@ import Orbit from "../components/Orbit.astro";
 
         </nav>
 
+
+
+        <style>
+            .marquee-text {
+                overflow: clip;
+            }
+
+            .marquee-text-track {
+                width: max-content;
+                animation: marquee-move-text 9s linear infinite forwards;
+            }
+            @keyframes marquee-move-text {
+                to {
+                    transform: translateX(-50%);
+                }
+            }
+        </style>
+
         <footer class="w-full fade-in">
             <div class="marquee-text">
                 <div class="marquee-text-track flex px-2 pb-4 gap-4 text-white text-3xl  md:text-[5.5rem]">
@@ -74,7 +82,7 @@ import Orbit from "../components/Orbit.astro";
     </section>
 
 
-    <Bruce />
+
 
     <script>
         import { gsap } from 'gsap';
